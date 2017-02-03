@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from 'aphrodite';
-import { ROUTES, GetRoutes } from '../../utils/routerConfig';
+import { LOGIN_ROUTES, getRoutes } from '../../utils/routerConfig';
 import { mainAppStyles as S } from './style';
 import MainNavBar from '../MainNavbar';
 
@@ -26,7 +26,7 @@ class Login extends React.Component {
               </div>
 
               <div className={css(S.loginCardContent)}>
-                <GetRoutes routes={ROUTES[0].loginRoutes}/>
+                { getRoutes(LOGIN_ROUTES[0].loginRoutes) }
               </div>
 
             </div>

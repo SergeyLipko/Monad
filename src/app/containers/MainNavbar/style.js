@@ -24,7 +24,7 @@ export const MainNavBarStyles = StyleSheet.create({
   },
 
   MN_LogoText: {
-    fontSize: '27px',
+    fontSize: '32px',
     fontWeight: '800',
     color: '#fff',
   },

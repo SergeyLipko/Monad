@@ -1,6 +1,6 @@
 import { StyleSheet } from 'aphrodite';
-import { flexCenter, flexDefault } from '../../../styles/utils/mixins';
-import { variables as v } from '../../../styles/utils/variables';
+// import { flexCenter, flexDefault } from '../../../styles/utils/mixins';
+// import { variables as v } from '../../../styles/utils/variables';
 
 
 

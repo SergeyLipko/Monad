@@ -44,14 +44,14 @@ export const mainAppStyles = StyleSheet.create({
 
   loginCardMainTitle: {
     paddingBottom: '25px',
-    fontSize: '31px',
+    fontSize: '33px',
     color: v.colors.darkGrey,
   },
 
   loginCardText: {
     padding: '0 20px 0',
-    fontSize: '16px',
-    lineHeight: '22px',
+    fontSize: '18px',
+    lineHeight: '24px',
     color: v.colors.fontGrey,
     fontWeight: 300,
     textAlign: 'center',

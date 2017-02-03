@@ -21,11 +21,13 @@ export const mainAppStyles = StyleSheet.create({
   },
 
   loginCardLinks: {
+    fontSize: '17px',
     color: v.colors.fontGrey,
     paddingBottom: '40px',
   },
 
   loginLink: {
+    fontSize: '17px',
     paddingLeft: '5px',
     color: v.colors.darkBlue,
     textDecoration: 'underline',

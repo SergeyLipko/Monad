@@ -6,7 +6,7 @@ import SignUp from '../../containers/Login/SignUp';
 import SignIn from '../../containers/Login/SignIn';
 
 
-export const ROUTES = [
+export const LOGIN_ROUTES = [
   { path: '/login',
     component: Login,
     loginRoutes: [
@@ -24,16 +24,10 @@ export const ROUTES = [
 
 const RenderRoute = route => <Route path={route.path} component={route.component} />;
 
-export const GetRoutes = ({ routes }) => {
-  return (
-    <div>
-      {
-        routes.map((route, i) => {
-          return <RenderRoute key={i} {...route}/>
-        })
-      }
-    </div>
-  )
+export const getRoutes = routes => {
+  return routes.map((route, i) => {
+    return <RenderRoute key={i} {...route}/>
+  })
 };
 
 

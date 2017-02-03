@@ -17,9 +17,9 @@ class SignIn extends React.Component {
     return (
       <div className={css(S.loginCard)}>
         <p className={css(S.loginCardLinks)}>
-          You can login or create an account
+          You can login or
           <Link to='/login/signUp'>
-            <span className={css(S.loginLink)}>Sign Up</span>
+            <span className={css(S.loginLink)}>Create an account</span>
           </Link>
         </p>
         <TextField

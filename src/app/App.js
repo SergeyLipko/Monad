@@ -1,5 +1,5 @@
 import React from 'react';
-import { ROUTES, GetRoutes } from './utils/routerConfig';
+import { LOGIN_ROUTES, getRoutes } from './utils/routerConfig';
 import './styles.css';
 
 
@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <GetRoutes routes={ROUTES}/>
+        { getRoutes(LOGIN_ROUTES) }
       </div>
     );
   }
