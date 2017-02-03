@@ -1,9 +1,16 @@
 import React from 'react';
+import { ROUTES, GetRoutes } from './utils/routerConfig';
+import './styles.css';
+
+
+
 
 class App extends React.Component {
   render() {
     return (
-      <div> { this.props.children } </div>
+      <div>
+        <GetRoutes routes={ROUTES}/>
+      </div>
     );
   }
 }

@@ -6,7 +6,7 @@ export const flexDefault = (justifyContent='flex-start', alignItems='flex-start'
   };
 };
 
-export const flexColumn = (justifyContent, alignItems) => {
+export const flexColumn = (justifyContent='flex-start', alignItems='center') => {
   return {
     display: 'flex',
     flexDirection: 'column',
