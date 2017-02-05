@@ -3,7 +3,6 @@ import { css } from 'aphrodite';
 import { LOGIN_ROUTES, getRoutes } from '../../utils/routerConfig';
 import { mainAppStyles as S } from './style';
 import MainNavBar from '../MainNavbar';
-import { login } from '../../utils/textCaptions';
 
 
 class Login extends React.Component {
@@ -17,10 +16,12 @@ class Login extends React.Component {
             <div className={css(S.loginCardWrapper)}>
               <div className={css(S.loginCardHead)}>
                 <h3 className={css(S.loginCardMainTitle)}>
-                  { login.welcome }
+                  Welcome to Monad
                 </h3>
                 <p className={css(S.loginCardText)}>
-                  { login.appDescription }
+                  Monad is an awesome note app designed
+                  for easily creating, storing and editing
+                  your notes
                 </p>
               </div>
 
