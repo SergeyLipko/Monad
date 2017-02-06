@@ -1,7 +1,6 @@
 import express from 'express';
 
 
-
 export const productsRoutes = model => {
 
   const router = express.Router();

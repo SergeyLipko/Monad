@@ -7,10 +7,11 @@ import { dataBase, port } from '../config/config.js';
 
 import './models/Designer';
 import './models/Product';
+import './models/User';
 
-import { designersRoutes } from './routes/Designers';
-import { productsRoutes } from './routes/Products';
 
+import { userRoutes } from './routes/User';
+import { authenticateUserRoutes } from './routes/AuthenticateUser';
 
 
 const app = express();
@@ -23,12 +24,13 @@ mongoose.connect(dataBase, (err) => { if(err) console.log(err); });
 
 const Designer = mongoose.model('Designer');
 const Product = mongoose.model('Product');
+const User = mongoose.model('User');
 
 const appRouter = express.Router();
 
 
-appRouter.use('/designers', designersRoutes(Designer));
-appRouter.use('/products', productsRoutes(Product));
+appRouter.use('/user', userRoutes(User));
+appRouter.use('/user', authenticateUserRoutes(User));
 
 
 app.use('/api', appRouter);

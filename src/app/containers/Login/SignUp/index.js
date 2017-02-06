@@ -18,6 +18,7 @@ class SignUp extends React.Component {
     }
   };
 
+
   render() {
     let { login, password, confirmPassword, errors } = this.state;
 
@@ -68,6 +69,7 @@ class SignUp extends React.Component {
     )
   }
 
+
   onFieldChange = field => event => {
     this.setState({
       [field]: event.target.value,
@@ -78,6 +80,7 @@ class SignUp extends React.Component {
     let { login, password, confirmPassword } = this.state;
     return login.length === 0 || password.length === 0 || confirmPassword.length === 0;
   };
+
 
   confirmPasswordValidate = () => this.state.password === this.state.confirmPassword;
 
