@@ -157,6 +157,8 @@ class SignUp extends React.Component {
         return <span className={css(S.statusMessage, S.failure)}>
                 Error when creating user
                </span>;
+      default:
+        return <div />
     }
   }
 

@@ -18,7 +18,7 @@ function * registerRequests(data) {
   for(let i = 0; i < 5; i++) {
     try {
       let apiResponse;
-      return apiResponse = yield call(createUser, {...data});
+      return apiResponse = yield call(createUser, { ...data });
     } catch(err) {
       if (i < 5) {
         yield call(delay, 3000);
@@ -34,6 +34,7 @@ function * createUserSaga(action){
   try {
     yield call(registerRequests, action.payload);
     yield put(createUserSuccess());
+    // TODO move user to login scene
   } catch (err) {
     yield put(createUserFailure());
   }
