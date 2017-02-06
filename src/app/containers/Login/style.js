@@ -29,7 +29,7 @@ export const mainAppStyles = StyleSheet.create({
 
   loginCardWrapper: {
     width: '400px',
-    height: '500px',
+    height: '550px',
     backgroundColor: '#fff',
     borderRadius: '6px',
     boxShadow: 'rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px',

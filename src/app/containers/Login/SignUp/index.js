@@ -1,9 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
 import { css } from 'aphrodite';
 import { TextField, RaisedButton } from 'material-ui';
 import { mainAppStyles as S } from './style';
 import { regExpValidate, EMAIL_REGEXP, PASSWORD_REGEXP } from '../../../utils/validation';
+import { createUser } from '../../../redux/modules/session';
+import Spinner from '../../../components/Spinner';
+
+
+const mapStateToProps = ({ session }) => ({
+  isLoading: session.isLoading,
+  registrationStatus: session.registrationStatus,
+});
+
+const mapDispatchToProps = dispatch => ({
+  createNewUser: credentials => dispatch(createUser(credentials)),
+});
 
 
 class SignUp extends React.Component {
@@ -57,14 +70,16 @@ class SignUp extends React.Component {
           value={confirmPassword}
           type='password'
           hintText='Confirm password'/>
-
         <RaisedButton
           disabled={this.checkFieldsEmpty()}
           onClick={this.onSubmit}
-          backgroundColor={'#45a7b9'}
+          backgroundColor='#45a7b9'
           labelStyle={{color: '#fff'}}
           className={css(S.loginCardButton)}
           label="Sign Up" />
+
+        { this.props.isLoading && <Spinner />}
+        { this.renderStatusMessage() }
       </div>
     )
   }
@@ -85,7 +100,7 @@ class SignUp extends React.Component {
   confirmPasswordValidate = () => this.state.password === this.state.confirmPassword;
 
   fieldValidate = validateFunc => (errorField, regExpType) => {
-    if(this.state[errorField].length !== 0){
+    if (this.state[errorField].length !== 0){
       this.setState(state => {
         return {
           errors: {
@@ -101,7 +116,7 @@ class SignUp extends React.Component {
   onConfirmPasswordBlur = this.fieldValidate(this.confirmPasswordValidate);
 
   confirmPasswordCheck = () => {
-    if(!this.confirmPasswordValidate()){
+    if (!this.confirmPasswordValidate()){
       this.setState(state => {
         return {
           errors: {
@@ -119,14 +134,32 @@ class SignUp extends React.Component {
     let { login, password, confirmPassword } = this.state.errors;
     this.confirmPasswordCheck();
 
-    if(this.confirmPasswordCheck()){
-      if(!login && !password && !confirmPassword){
-        console.log('fields are correct');
+    if (this.confirmPasswordCheck()){
+      if (!login && !password && !confirmPassword){
+        let { login, password } = this.state;
+        this.props.createNewUser({ login, password });
       }
     }
   };
 
 
+  renderStatusMessage = () => {
+    let { registrationStatus } = this.props;
+
+    switch(registrationStatus){
+      case null:
+        return <div />;
+      case 'success':
+        return <span className={css(S.statusMessage, S.success)}>
+                User successfully created
+               </span>;
+      case 'failure':
+        return <span className={css(S.statusMessage, S.failure)}>
+                Error when creating user
+               </span>;
+    }
+  }
+
 }
 
-export default SignUp;
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

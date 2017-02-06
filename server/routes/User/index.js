@@ -12,7 +12,7 @@ export const userRoutes = model => {
       });
     })
 
-    // TODO add handler if email already in use
+    // TODO add handle if email already in use
     .post((req, res) => {
       const user = new model(req.body);
       user.save(err => {

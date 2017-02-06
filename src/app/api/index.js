@@ -12,13 +12,14 @@ const POST = (url, data={}) => http.post(url, data);
 const DELETE = url => http.delete(url);
 
 
+export const createUser = data => POST('/user', data);
+export const loginUser = data => POST('/users/authenticate', data).then(res => res.data);
 
-export const getNotes = ()=> GET(`/notes`).then(res => res.data);
+export const getNotes = () => GET(`/notes`).then(res => res.data);
 export const addNote = data => POST(`/notes`, data);
 export const deleteNote = id => DELETE(`/notes/${id}`);
 
-export const addUser = data => POST('/users', data);
-export const loginUser = data => POST('/users/authenticate', data).then(res => res.data);
+
 
 
 

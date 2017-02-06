@@ -11,27 +11,41 @@ export const mainAppStyles = StyleSheet.create({
   },
 
   loginCardField: {
-    width: '275px',
-    marginBottom: '15px',
+    width: 275,
+    marginBottom: 15,
   },
 
   loginCardButton: {
-    marginTop: '15px',
-    width: '200px',
+    marginTop: 15,
+    width: 200,
   },
 
   loginCardLinks: {
-    fontSize: '17px',
+    fontSize: 17,
     color: v.colors.fontGrey,
-    paddingBottom: '40px',
+    paddingBottom: 40,
   },
 
   loginLink: {
-    fontSize: '17px',
-    paddingLeft: '5px',
+    fontSize: 17,
+    paddingLeft: 5,
     color: v.colors.darkBlue,
     textDecoration: 'underline',
     cursor: 'pointer',
+  },
+
+  statusMessage: {
+    paddingTop: 30,
+    fontSize: 16,
+    color: 'green',
+  },
+
+  success: {
+    color: 'green',
+  },
+
+  failure: {
+    color: 'red',
   },
 
 });
