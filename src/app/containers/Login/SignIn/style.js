@@ -34,4 +34,9 @@ export const mainAppStyles = StyleSheet.create({
     cursor: 'pointer',
   },
 
+  errorMsg: {
+    paddingTop: 30,
+    color: 'red',
+  },
+
 });

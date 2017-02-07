@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { connect } from 'react-redux';
 import { css } from 'aphrodite';
 import { TextField, RaisedButton } from 'material-ui';
@@ -11,7 +11,7 @@ import Spinner from '../../../components/Spinner';
 
 const mapStateToProps = ({ session }) => ({
   isLoading: session.isLoading,
-  registrationStatus: session.registrationStatus,
+  registrationStatus: session.registrationRequestStatus,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -39,7 +39,7 @@ class SignUp extends React.Component {
       <div className={css(S.loginCard)}>
         <p className={css(S.loginCardLinks)}>
           You can create an account or
-          <Link to='/login/signIn'>
+          <Link to='/signIn'>
             <span className={css(S.loginLink)}>Login</span>
           </Link>
         </p>

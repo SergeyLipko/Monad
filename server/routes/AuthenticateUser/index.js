@@ -17,23 +17,24 @@ export const authenticateUserRoutes = model => {
           console.log('Error in initial phase');
         }
 
+        const _user = user[0];
+
         try{
-          if (!user) {
+          if (!_user) {
             res.json({
               success: false,
               errorMessage: 'Authentication failed. User not found.'
             });
             throw 'user not found';
-          } else if (user) {
 
-            const _user = user[0];
-
+          } else if (_user) {
             if(_user.password !== req.body.password){
               res.json({
                 success: false,
                 errorMessage: 'Authentication failed. Wrong password.'
               });
               throw 'wrong password';
+
             } else {
               let token = jwt.sign(_user, app.get('superSecret'), {
                 expiresIn: 1440
@@ -46,11 +47,10 @@ export const authenticateUserRoutes = model => {
                 userLogin: _user.login,
                 token: token
               });
-
             }
           }
-        } catch(e){
-          console.log('Authentication error:', e);
+        } catch(err){
+          console.log('Authentication error :', err);
         }
       });
     });

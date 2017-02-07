@@ -13,7 +13,7 @@ const DELETE = url => http.delete(url);
 
 
 export const createUser = data => POST('/user', data);
-export const loginUser = data => POST('/users/authenticate', data).then(res => res.data);
+export const loginUser = data => POST('/user/authenticate', data).then(res => res.data, err => err);
 
 export const getNotes = () => GET(`/notes`).then(res => res.data);
 export const addNote = data => POST(`/notes`, data);
