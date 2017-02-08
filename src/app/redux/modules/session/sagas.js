@@ -2,12 +2,14 @@ import { takeLatest, delay } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import { browserHistory } from 'react-router'
 import { createUser, loginUser } from '../../../api';
+import { sagaLongRequest } from '../../helpers';
 
 import {
   CREATE_USER, LOGIN_USER_REQUEST,
-  startSpinner, stopSpinner, createUserSuccess,
-  createUserFailure, setLoginStatus, clearErrors,
+  startSpinner, stopSpinner,
+  clearSessionStatus, setSessionStatus,
 } from './';
+
 
 
 /*
@@ -16,39 +18,34 @@ import {
 function * watchCreateUser() {
   yield takeLatest(CREATE_USER, createUserSaga)
 }
-// TODO create reusable instance of this func
-function * registerRequests(data) {
-  for (let i = 0; i < 5; i++) {
-    try {
-      let apiResponse;
-      return apiResponse = yield call(createUser, { ...data });
-    } catch(err) {
-      if (i < 5) {
-        yield call(delay, 3000);
-      }
-    }
-  }
-  throw new Error('API request failed');
-}
 
 function * createUserSaga(action){
-  yield put(clearErrors());
+  yield put(clearSessionStatus());
   yield put(startSpinner());
 
   try {
-    yield call(registerRequests, action.payload);
-    yield put(createUserSuccess());
-    yield put(stopSpinner());
+    const response = yield call(sagaLongRequest, createUser, action.payload, 5);
 
-    yield delay(1500);
-    yield browserHistory.push('/signIn');
+    if (response.success) {
+      yield put(stopSpinner());
+      yield put(setSessionStatus(response.message));
+
+      yield delay(1500);
+      yield put(clearSessionStatus());
+      yield browserHistory.push('/signIn');
+    }
+
+    if (!response.success) {
+      yield put(stopSpinner());
+      yield put(setSessionStatus(response.message));
+    }
 
   } catch (err) {
-    yield put(createUserFailure());
     yield put(stopSpinner());
-    console.log('User creating error', err);
+    yield put(setSessionStatus('Connection error'));
   }
 }
+
 
 
 /*
@@ -59,21 +56,21 @@ function * watchLoginUser() {
 }
 
 function * loginUserSaga(action) {
-  yield put(clearErrors());
+  yield put(clearSessionStatus());
   yield put(startSpinner());
   try {
-    const response = yield call(loginUser, action.payload);
-    // TODO add handle error when connection is broken (like in signup)
+    const response = yield call(sagaLongRequest, loginUser, action.payload, 5);
+
     if (response.success) {
       console.log('User has been authenticated', response);
     }
 
     if (!response.success) {
-      yield put(setLoginStatus(response.errorMessage));
+      yield put(setSessionStatus(response.errorMessage));
     }
 
   } catch (err) {
-    console.log('Login user err', err);
+    yield put(setSessionStatus('Connection error'));
   }
   yield put(stopSpinner());
 }

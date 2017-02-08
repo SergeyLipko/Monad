@@ -12,15 +12,39 @@ export const userRoutes = model => {
       });
     })
 
-    // TODO add handle if email already in use
     .post((req, res) => {
-      const user = new model(req.body);
-      user.save(err => {
-        if(!err) {
-          res.json({ message: 'User created', user });
-        } else {
-          res.json({ message: 'User not created', err });
+      model.find({ login: req.body.login }, (err, user) => {
+
+        // check if user is already created
+        try {
+          if(user.length !== 0) {
+            res.json({
+              success: false,
+              message: 'Email address already in use'
+            });
+
+          } else {
+            const user = new model(req.body);
+            user.save(err => {
+              if(!err) {
+                res.json({
+                  success: true,
+                  message: 'User successfully created',
+                  user
+                });
+              } else {
+                res.json({
+                  success: false,
+                  message: 'User not created',
+                  err
+                });
+              }
+            });
+          }
+        } catch (err) {
+          console.log('user creating server err', err);
         }
+
       });
     });
 

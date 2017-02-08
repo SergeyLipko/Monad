@@ -11,7 +11,7 @@ import Spinner from '../../../components/Spinner';
 
 const mapStateToProps = ({ session }) => ({
   isLoading: session.isLoading,
-  registrationStatus: session.registrationRequestStatus,
+  registrationStatus: session.sessionStatus,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -79,7 +79,7 @@ class SignUp extends React.Component {
           label="Sign Up" />
 
         { this.props.isLoading && <Spinner />}
-        { this.renderStatusMessage() }
+        <span style={{ paddingTop: 30 }}>{this.props.registrationStatus}</span>
       </div>
     )
   }
@@ -141,26 +141,6 @@ class SignUp extends React.Component {
       }
     }
   };
-
-
-  renderStatusMessage = () => {
-    let { registrationStatus } = this.props;
-
-    switch(registrationStatus){
-      case null:
-        return <div />;
-      case 'success':
-        return <span className={css(S.statusMessage, S.success)}>
-                User successfully created
-               </span>;
-      case 'failure':
-        return <span className={css(S.statusMessage, S.failure)}>
-                Error when creating user
-               </span>;
-      default:
-        return <div />
-    }
-  }
 
 }
 

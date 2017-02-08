@@ -10,7 +10,7 @@ import Spinner from '../../../components/Spinner';
 
 const mapStateToProps = ({ session }) => ({
   isLoading: session.isLoading,
-  loginError: session.loginRequestStatus,
+  loginStatus: session.sessionStatus,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -26,7 +26,6 @@ class SignIn extends React.Component {
 
   render() {
     let { login, password, disableSubmit } = this.state;
-    let { loginError } = this.props;
 
     return (
       <div className={css(S.loginCard)}>
@@ -58,7 +57,7 @@ class SignIn extends React.Component {
           label="Log In" />
 
         { this.props.isLoading && <Spinner />}
-        { loginError && <span className={css(S.errorMsg)}>{ loginError }</span> }
+        <span className={css(S.errorMsg)}>{ this.props.loginStatus }</span>
       </div>
     )
   }

@@ -1,31 +1,29 @@
 import { createAction, handleActions } from 'redux-actions';
 
 const INITIAL_STATE = {
+  sessionStatus: null,
   isAuthenticated: false,
   authenticatedUser: null,
-  registrationRequestStatus: null,
-  loginRequestStatus: null,
   isLoading: false,
 };
+
+
+/*
+* Use one setSessionStatus action for handle error status for both:
+* user creation and log in
+* */
+export const SET_SESSION_STATUS = 'session/SET_SESSION_STATUS';
+export const setSessionStatus = createAction(SET_SESSION_STATUS);
 
 
 export const CREATE_USER = 'session/CREATE_USER';
 export const createUser = createAction(CREATE_USER);
 
-export const CREATE_USER_SUCCESS = 'session/CREATE_USER_SUCCESS';
-export const createUserSuccess = createAction(CREATE_USER_SUCCESS);
-
-export const CREATE_USER_FAILURE = 'session/CREATE_USER_FAILURE';
-export const createUserFailure = createAction(CREATE_USER_FAILURE);
-
 export const LOGIN_USER_REQUEST = 'session/LOGIN_USER_REQUEST';
 export const loginUserRequest = createAction(LOGIN_USER_REQUEST);
 
-export const SET_LOGIN_STATUS = 'session/SET_LOGIN_STATUS';
-export const setLoginStatus = createAction(SET_LOGIN_STATUS);
-
-export const CLEAR_ERRORS = 'session/CLEAR_ERRORS';
-export const clearErrors = createAction(CLEAR_ERRORS);
+export const CLEAR_SESSION_STATUS = 'session/CLEAR_SESSION_STATUS';
+export const clearSessionStatus = createAction(CLEAR_SESSION_STATUS);
 
 export const START_SPINNER = 'session/START_SPINNER';
 export const startSpinner = createAction(START_SPINNER);
@@ -36,25 +34,14 @@ export const stopSpinner = createAction(STOP_SPINNER);
 
 export default handleActions({
 
-  [CREATE_USER_SUCCESS]: (state, action) => ({
+  [SET_SESSION_STATUS]: (state, action) => ({
     ...state,
-    registrationRequestStatus: 'success',
+    sessionStatus: action.payload,
   }),
 
-  [CREATE_USER_FAILURE]: (state, action) => ({
+  [CLEAR_SESSION_STATUS]: (state, action) => ({
     ...state,
-    registrationRequestStatus: 'failure',
-  }),
-
-  [SET_LOGIN_STATUS]: (state, action) => ({
-    ...state,
-    loginRequestStatus: action.payload,
-  }),
-
-  [CLEAR_ERRORS]: (state, action) => ({
-    ...state,
-    registrationRequestStatus: null,
-    loginRequestStatus: null,
+    sessionStatus: null,
   }),
 
   [START_SPINNER]: (state, action) => ({

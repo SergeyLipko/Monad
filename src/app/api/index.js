@@ -1,5 +1,6 @@
 import * as axios from 'axios';
 
+
 const CONFIG = {
   baseURL: 'http://localhost:8080/api',
 };
@@ -12,8 +13,8 @@ const POST = (url, data={}) => http.post(url, data);
 const DELETE = url => http.delete(url);
 
 
-export const createUser = data => POST('/user', data);
-export const loginUser = data => POST('/user/authenticate', data).then(res => res.data, err => err);
+export const createUser = data => POST('/user', data).then(res => res.data);
+export const loginUser = data => POST('/user/authenticate', data).then(res => res.data);
 
 export const getNotes = () => GET(`/notes`).then(res => res.data);
 export const addNote = data => POST(`/notes`, data);
