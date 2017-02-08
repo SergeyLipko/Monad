@@ -45,4 +45,9 @@ export const mainAppStyles = StyleSheet.create({
     color: 'red',
   },
 
+  successMsg: {
+    paddingTop: 30,
+    color: 'green',
+  },
+
 });

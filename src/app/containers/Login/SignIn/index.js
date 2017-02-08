@@ -26,6 +26,7 @@ class SignIn extends React.Component {
 
   render() {
     let { login, password, disableSubmit } = this.state;
+    let { loginStatus } = this.props;
 
     return (
       <div className={css(S.loginCard)}>
@@ -57,10 +58,17 @@ class SignIn extends React.Component {
           label="Log In" />
 
         { this.props.isLoading && <Spinner />}
-        <span className={css(S.errorMsg)}>{ this.props.loginStatus }</span>
+        { loginStatus &&
+        <span
+          className={css(S.errorMsg)}>
+            { loginStatus.message }
+          </span>
+        }
+
       </div>
     )
   }
+  // <span className={css(S.errorMsg)}>{ this.props.loginStatus }</span>
 
   _checkFieldsEmpty = () => {
     let { login, password } = this.state;

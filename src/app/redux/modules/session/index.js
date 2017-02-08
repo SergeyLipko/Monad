@@ -2,18 +2,10 @@ import { createAction, handleActions } from 'redux-actions';
 
 const INITIAL_STATE = {
   sessionErrors: null,
-  isAuthenticated: false,
   authenticatedUser: null,
+  isAuthenticated: false,
   isLoading: false,
 };
-
-
-/*
-* Use one setSessionErrors action for handle error status for both:
-* user creation and log in
-* */
-export const SET_SESSION_ERRORS = 'session/SET_SESSION_ERRORS';
-export const setSessionErrors = createAction(SET_SESSION_ERRORS);
 
 
 export const CREATE_USER = 'session/CREATE_USER';
@@ -21,6 +13,16 @@ export const createUser = createAction(CREATE_USER);
 
 export const LOGIN_USER_REQUEST = 'session/LOGIN_USER_REQUEST';
 export const loginUserRequest = createAction(LOGIN_USER_REQUEST);
+
+export const SET_USER = 'session/SET_USER';
+export const setUser = createAction(SET_USER);
+
+/*
+ * Use one setSessionErrors action for handle error status for both:
+ * user creation and log in
+ * */
+export const SET_SESSION_ERRORS = 'session/SET_SESSION_ERRORS';
+export const setSessionErrors = createAction(SET_SESSION_ERRORS);
 
 export const CLEAR_SESSION_ERRORS = 'session/CLEAR_SESSION_ERRORS';
 export const clearSessionErrors = createAction(CLEAR_SESSION_ERRORS);
@@ -32,7 +34,13 @@ export const STOP_SPINNER = 'session/STOP_SPINNER';
 export const stopSpinner = createAction(STOP_SPINNER);
 
 
+
 export default handleActions({
+
+  [SET_USER]: (state, action) => ({
+    ...state,
+    authenticatedUser: action.payload,
+  }),
 
   [SET_SESSION_ERRORS]: (state, action) => ({
     ...state,

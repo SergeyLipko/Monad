@@ -3,9 +3,20 @@ import { call } from 'redux-saga/effects';
 
 
 /*
-*  Trying to send request n-times and then return en error
+* Handle an error object that will sends to component
 * */
-export function * sagaLongRequest(apiRequest, data, counter) {
+export const setErrorsHelper = (message, success=false) => {
+  return {
+    message,
+    success
+  }
+};
+
+
+/*
+* Trying to send request n-times and then return en error
+* */
+export function * sagaLongRequest(apiRequest, data, counter=5) {
   for (let i = 0; i < counter; i++) {
     try {
       let apiResponse;

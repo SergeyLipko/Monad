@@ -34,6 +34,7 @@ class SignUp extends React.Component {
 
   render() {
     let { login, password, confirmPassword, errors } = this.state;
+    let { registrationStatus } = this.props;
 
     return (
       <div className={css(S.loginCard)}>
@@ -79,10 +80,16 @@ class SignUp extends React.Component {
           label="Sign Up" />
 
         { this.props.isLoading && <Spinner />}
-        <span className={css(S.errorMsg)}>{this.props.registrationStatus}</span>
+        { registrationStatus &&
+          <span
+            className={css(S.errorMsg, registrationStatus.success && S.successMsg)}>
+            { registrationStatus.message }
+          </span>
+        }
       </div>
     )
   }
+
 
 
   onFieldChange = field => event => {
