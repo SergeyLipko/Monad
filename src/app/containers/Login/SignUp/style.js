@@ -40,11 +40,8 @@ export const mainAppStyles = StyleSheet.create({
     color: 'green',
   },
 
-  success: {
-    color: 'green',
-  },
-
-  failure: {
+  errorMsg: {
+    paddingTop: 30,
     color: 'red',
   },
 

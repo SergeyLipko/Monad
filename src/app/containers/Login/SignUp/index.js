@@ -11,7 +11,7 @@ import Spinner from '../../../components/Spinner';
 
 const mapStateToProps = ({ session }) => ({
   isLoading: session.isLoading,
-  registrationStatus: session.sessionStatus,
+  registrationStatus: session.sessionErrors,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -79,7 +79,7 @@ class SignUp extends React.Component {
           label="Sign Up" />
 
         { this.props.isLoading && <Spinner />}
-        <span style={{ paddingTop: 30 }}>{this.props.registrationStatus}</span>
+        <span className={css(S.errorMsg)}>{this.props.registrationStatus}</span>
       </div>
     )
   }
@@ -95,7 +95,6 @@ class SignUp extends React.Component {
     let { login, password, confirmPassword } = this.state;
     return login.length === 0 || password.length === 0 || confirmPassword.length === 0;
   };
-
 
   confirmPasswordValidate = () => this.state.password === this.state.confirmPassword;
 
@@ -129,7 +128,6 @@ class SignUp extends React.Component {
     return this.confirmPasswordValidate();
   };
 
-
   onSubmit = () => {
     let { login, password, confirmPassword } = this.state.errors;
     this.confirmPasswordCheck();
@@ -141,7 +139,6 @@ class SignUp extends React.Component {
       }
     }
   };
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

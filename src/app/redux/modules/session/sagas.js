@@ -7,7 +7,7 @@ import { sagaLongRequest } from '../../helpers';
 import {
   CREATE_USER, LOGIN_USER_REQUEST,
   startSpinner, stopSpinner,
-  clearSessionStatus, setSessionStatus,
+  clearSessionErrors, setSessionErrors,
 } from './';
 
 
@@ -20,29 +20,28 @@ function * watchCreateUser() {
 }
 
 function * createUserSaga(action){
-  yield put(clearSessionStatus());
+  yield put(clearSessionErrors());
   yield put(startSpinner());
 
   try {
     const response = yield call(sagaLongRequest, createUser, action.payload, 5);
 
     if (response.success) {
-      yield put(stopSpinner());
-      yield put(setSessionStatus(response.message));
-
       yield delay(1500);
-      yield put(clearSessionStatus());
+      yield put(stopSpinner());
+
+      yield put(clearSessionErrors());
       yield browserHistory.push('/signIn');
     }
 
     if (!response.success) {
       yield put(stopSpinner());
-      yield put(setSessionStatus(response.message));
+      yield put(setSessionErrors(response.message));
     }
 
   } catch (err) {
     yield put(stopSpinner());
-    yield put(setSessionStatus('Connection error'));
+    yield put(setSessionErrors('Connection error'));
   }
 }
 
@@ -56,7 +55,7 @@ function * watchLoginUser() {
 }
 
 function * loginUserSaga(action) {
-  yield put(clearSessionStatus());
+  yield put(clearSessionErrors());
   yield put(startSpinner());
   try {
     const response = yield call(sagaLongRequest, loginUser, action.payload, 5);
@@ -66,11 +65,11 @@ function * loginUserSaga(action) {
     }
 
     if (!response.success) {
-      yield put(setSessionStatus(response.errorMessage));
+      yield put(setSessionErrors(response.errorMessage));
     }
 
   } catch (err) {
-    yield put(setSessionStatus('Connection error'));
+    yield put(setSessionErrors('Connection error'));
   }
   yield put(stopSpinner());
 }

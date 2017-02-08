@@ -10,7 +10,7 @@ import Spinner from '../../../components/Spinner';
 
 const mapStateToProps = ({ session }) => ({
   isLoading: session.isLoading,
-  loginStatus: session.sessionStatus,
+  loginStatus: session.sessionErrors,
 });
 
 const mapDispatchToProps = dispatch => ({
