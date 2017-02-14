@@ -1,5 +1,7 @@
-import * as axios from 'axios';
 
+
+
+import * as axios from 'axios';
 
 const CONFIG = {
   baseURL: 'http://localhost:8080/api',
@@ -17,9 +19,7 @@ export const createUser = data => POST('/user', data).then(res => res.data);
 export const loginUser = data => POST('/user/authenticate', data).then(res => res.data);
 
 export const getUser = id => GET(`/user/${id}`).then(res => res.data);
-export const getNotes = () => GET(`/notes`).then(res => res.data);
-export const addNote = data => POST(`/notes`, data);
-export const deleteNote = id => DELETE(`/notes/${id}`);
+
 
 
 

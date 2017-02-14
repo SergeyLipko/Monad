@@ -49,20 +49,12 @@ function * createUserSaga(action){
 }
 
 
-
 /*
 *  *  *  *  *  Login user  *  *  *  *  *
 * */
 function * watchLoginUser() {
   yield takeLatest(LOGIN_USER_REQUEST, loginUserSaga)
 }
-
-/*
-* Вообще можно при логинке сохранять в локалсторадже token и email юзера, дальше
-* черз токен запросом получать всех пользователей и по email находить текущего, затем
-* данные по нему сохранять в redux на стадии инициализации приложения
-* */
-
 
 function * loginUserSaga(action) {
   yield put(clearSessionErrors());

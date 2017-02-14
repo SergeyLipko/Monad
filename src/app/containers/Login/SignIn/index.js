@@ -48,6 +48,7 @@ class SignIn extends React.Component {
           underlineFocusStyle={{borderColor: '#45a7b9'}}
           onChange={this.handleChange('password')}
           value={password}
+          type='password'
           hintText='Password'/>
         <RaisedButton
           onClick={() => this.onSubmit()}
@@ -68,7 +69,6 @@ class SignIn extends React.Component {
       </div>
     )
   }
-
 
   _checkFieldsEmpty = () => {
     let { login, password } = this.state;

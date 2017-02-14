@@ -19,7 +19,7 @@ class MainNavBar extends React.Component {
       <div className={css(S.MN_Wrapper)}>
         <div className={css(S.MN_LogoWrapper)}>
           <span className={css(S.MN_LogoText)}>
-            Monad
+            *App*
           </span>
         </div>
 

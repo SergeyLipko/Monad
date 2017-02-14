@@ -15,12 +15,11 @@ class Login extends React.Component {
             <div className={css(S.loginCardWrapper)}>
               <div className={css(S.loginCardHead)}>
                 <h3 className={css(S.loginCardMainTitle)}>
-                  Welcome to Monad
+                  Welcome to *App*
                 </h3>
                 <p className={css(S.loginCardText)}>
-                  Monad is an awesome note app designed
-                  for easily creating, storing and editing
-                  your notes
+                  *App* is an awesome app designed
+                  for all your goals! Create an account and enjoy it!
                 </p>
               </div>
 
@@ -37,4 +36,6 @@ class Login extends React.Component {
 }
 
 export default Login;
+
+
 

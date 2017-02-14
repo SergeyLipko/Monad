@@ -42,7 +42,6 @@ export const STOP_SPINNER = 'session/STOP_SPINNER';
 export const stopSpinner = createAction(STOP_SPINNER);
 
 
-
 export default handleActions({
 
   [SET_USER]: (state, action) => ({
