@@ -1,11 +1,12 @@
 import { takeLatest, delay } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import { browserHistory } from 'react-router'
-import { createUser, loginUser } from '../../../api';
+import { createUser, loginUser, getUser } from '../../../api';
 import { sagaLongRequest, setErrorsHelper } from '../../helpers';
 
 import {
   CREATE_USER, LOGIN_USER_REQUEST,
+  LOGOUT_USER, CHECK_USER_TOKEN,
   startSpinner, stopSpinner,
   clearSessionErrors, setSessionErrors,
   setUser,
@@ -56,17 +57,24 @@ function * watchLoginUser() {
   yield takeLatest(LOGIN_USER_REQUEST, loginUserSaga)
 }
 
+/*
+* Вообще можно при логинке сохранять в локалсторадже token и email юзера, дальше
+* черз токен запросом получать всех пользователей и по email находить текущего, затем
+* данные по нему сохранять в redux на стадии инициализации приложения
+* */
+
+
 function * loginUserSaga(action) {
   yield put(clearSessionErrors());
   yield put(startSpinner());
+
   try {
     const user = yield call(sagaLongRequest, loginUser, action.payload);
 
     if (user.success) {
-      yield put(setUser(user));
-
-      localStorage.setItem('localUserData', JSON.stringify({ ...user }));
-      // JSON.parse(localStorage.getItem('localUserData'))   <-- get data from local storage
+      // TODO create utils functions to save and handle localStorage actions
+      yield localStorage.setItem('localUserData', JSON.stringify({ ...user }));
+      yield browserHistory.push('/home');
     }
 
     if (!user.success) {
@@ -80,7 +88,54 @@ function * loginUserSaga(action) {
 }
 
 
+
+/*
+ *  *  *  *  *  Logout user  *  *  *  *  *
+ * */
+function * watchLogoutUser() {
+  yield takeLatest(LOGOUT_USER, logoutUserSaga)
+}
+
+function * logoutUserSaga() {
+
+  yield yield browserHistory.push('/signIn');
+  yield localStorage.clear();
+
+}
+
+
+
+/*
+ *  *  *  *  *  Check user authentication  *  *  *  *  *
+ * */
+function * watchUserAuthentication() {
+  yield takeLatest(CHECK_USER_TOKEN, userAuthenticationSaga)
+}
+
+function * userAuthenticationSaga() {
+  const userLocal = JSON.parse(localStorage.getItem('localUserData'));
+
+  // first - check user from local storage 
+  if (!userLocal) yield logoutUserSaga();
+
+  yield put(startSpinner());
+  try {
+    const freshUser = yield call(sagaLongRequest, getUser, userLocal.userId);
+    yield put(setUser(freshUser));
+
+  } catch (err) {
+    console.log('err');
+  }
+  yield put(stopSpinner());
+
+}
+
+
+
+
 export default [
   watchCreateUser,
   watchLoginUser,
+  watchLogoutUser,
+  watchUserAuthentication,
 ];

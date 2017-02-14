@@ -81,15 +81,13 @@ class SignUp extends React.Component {
 
         { this.props.isLoading && <Spinner />}
         { registrationStatus &&
-          <span
-            className={css(S.errorMsg, registrationStatus.success && S.successMsg)}>
+          <span className={css(S.errorMsg, registrationStatus.success && S.successMsg)}>
             { registrationStatus.message }
           </span>
         }
       </div>
     )
   }
-
 
 
   onFieldChange = field => event => {

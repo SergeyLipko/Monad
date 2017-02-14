@@ -68,7 +68,7 @@ class SignIn extends React.Component {
       </div>
     )
   }
-  // <span className={css(S.errorMsg)}>{ this.props.loginStatus }</span>
+
 
   _checkFieldsEmpty = () => {
     let { login, password } = this.state;

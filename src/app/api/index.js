@@ -16,6 +16,7 @@ const DELETE = url => http.delete(url);
 export const createUser = data => POST('/user', data).then(res => res.data);
 export const loginUser = data => POST('/user/authenticate', data).then(res => res.data);
 
+export const getUser = id => GET(`/user/${id}`).then(res => res.data);
 export const getNotes = () => GET(`/notes`).then(res => res.data);
 export const addNote = data => POST(`/notes`, data);
 export const deleteNote = id => DELETE(`/notes/${id}`);

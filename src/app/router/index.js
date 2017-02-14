@@ -8,6 +8,9 @@ import App from '../App';
 import Login from '../containers/Login';
 import SignUp from '../containers/Login/SignUp';
 import SignIn from '../containers/Login/SignIn';
+import AuthorizedUser from '../containers/AuthorizedUser';
+import Home from '../containers/Home';
+
 
 
 import createStore from '../redux/store';
@@ -25,6 +28,10 @@ export const AppRouter = () => {
               <IndexRedirect to='signUp'/>
               <Route path='signIn' component={SignIn}/>
               <Route path='signUp' component={SignUp}/>
+            </Route>
+
+            <Route component={AuthorizedUser}>
+              <Route path='home' component={Home}/>
             </Route>
 
           </Route>
