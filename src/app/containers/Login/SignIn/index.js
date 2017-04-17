@@ -7,7 +7,6 @@ import { mainAppStyles as S } from './style';
 import { loginUserRequest } from '../../../redux/modules/session';
 import Spinner from '../../../components/Spinner';
 
-
 const mapStateToProps = ({ session }) => ({
   isLoading: session.isLoading,
   loginStatus: session.sessionErrors,

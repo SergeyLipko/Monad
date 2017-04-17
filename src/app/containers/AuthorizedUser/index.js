@@ -5,8 +5,6 @@ import { mainAppStyles as S } from './style';
 import { checkUserToken } from '../../redux/modules/session';
 import MainNavBar from '../MainNavbar';
 
-
-
 const mapDispatchToProps = dispatch => ({
   checkUserAuthentication: () => dispatch(checkUserToken()),
 });

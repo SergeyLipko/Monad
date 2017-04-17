@@ -1,7 +1,6 @@
 import {  delay } from 'redux-saga';
 import { call } from 'redux-saga/effects';
 
-
 /*
 * Handle an error object that will sends to component
 * */
@@ -11,7 +10,6 @@ export const setErrorsHelper = (message, success=false) => {
     success
   }
 };
-
 
 /*
 * Trying to send request n-times and then return en error

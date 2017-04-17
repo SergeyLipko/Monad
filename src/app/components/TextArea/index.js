@@ -1,8 +1,6 @@
 import React from 'react';
 import './style.css';
 
-
-
 const TextArea = ({onChange, invalid, value, placeholder, type, ...props}) =>
   <div className={"input-wrapper"}>
     <textarea

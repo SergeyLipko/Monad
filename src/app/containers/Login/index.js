@@ -3,7 +3,6 @@ import { css } from 'aphrodite';
 import { mainAppStyles as S } from './style';
 import MainNavBar from '../MainNavbar';
 
-
 class Login extends React.Component {
   render(){
     return (

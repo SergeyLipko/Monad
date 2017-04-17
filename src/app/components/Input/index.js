@@ -1,8 +1,6 @@
 import React from 'react';
 import './style.css';
 
-
-
 const Input = ({onChange, invalid, value, placeholder, type, ...props}) =>
   <div className={"input-wrapper"}>
     <input

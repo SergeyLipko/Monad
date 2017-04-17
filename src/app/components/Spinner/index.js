@@ -2,7 +2,6 @@ import React from 'react';
 import MDSpinner from 'react-md-spinner';
 import { StyleSheet, css } from 'aphrodite';
 
-
 const SpinnerStyles = StyleSheet.create({
   spinner: {
     marginTop: 25,

@@ -12,8 +12,6 @@ import {
   setUser,
 } from './';
 
-
-
 /*
 *  *  *  *  *  Create new user  *  *  *  *  *
 * */
@@ -48,7 +46,6 @@ function * createUserSaga(action){
   }
 }
 
-
 /*
 *  *  *  *  *  Login user  *  *  *  *  *
 * */
@@ -79,8 +76,6 @@ function * loginUserSaga(action) {
   yield put(stopSpinner());
 }
 
-
-
 /*
  *  *  *  *  *  Logout user  *  *  *  *  *
  * */
@@ -89,13 +84,9 @@ function * watchLogoutUser() {
 }
 
 function * logoutUserSaga() {
-
   yield yield browserHistory.push('/signIn');
   yield localStorage.clear();
-
 }
-
-
 
 /*
  *  *  *  *  *  Check user authentication  *  *  *  *  *
@@ -121,9 +112,6 @@ function * userAuthenticationSaga() {
   yield put(stopSpinner());
 
 }
-
-
-
 
 export default [
   watchCreateUser,

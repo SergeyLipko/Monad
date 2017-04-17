@@ -1,6 +1,3 @@
-
-
-
 import * as axios from 'axios';
 
 const CONFIG = {
@@ -13,7 +10,6 @@ const http = createHTTP();
 const GET = url => http.get(url);
 const POST = (url, data={}) => http.post(url, data);
 const DELETE = url => http.delete(url);
-
 
 export const createUser = data => POST('/user', data).then(res => res.data);
 export const loginUser = data => POST('/user/authenticate', data).then(res => res.data);
