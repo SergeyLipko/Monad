@@ -2,7 +2,6 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import { secret } from '../../../config/config.js';
 
-
 export const authenticateUserRoutes = model => {
 
   const router = express.Router();
