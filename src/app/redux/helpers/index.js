@@ -4,12 +4,10 @@ import { call } from 'redux-saga/effects';
 /*
 * Handle an error object that will sends to component
 * */
-export const setErrorsHelper = (message, success=false) => {
-  return {
-    message,
-    success
-  }
-};
+export const setErrorsHelper = (message, success=false) => ({
+  message,
+  success
+});
 
 /*
 * Trying to send request n-times and then return en error
