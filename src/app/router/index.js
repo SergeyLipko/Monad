@@ -11,8 +11,6 @@ import SignIn from '../containers/Login/SignIn';
 import AuthorizedUser from '../containers/AuthorizedUser';
 import Home from '../containers/Home';
 
-
-
 import createStore from '../redux/store';
 const store = createStore();
 injectTapEventPlugin();
