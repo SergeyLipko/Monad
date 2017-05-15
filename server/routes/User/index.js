@@ -1,6 +1,5 @@
 import express from 'express';
 
-
 export const userRoutes = model => {
 
   const router = express.Router();
